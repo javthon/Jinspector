@@ -1,0 +1,18 @@
+server:
+  #server id
+  id: serverhostid
+  #server ip
+  ip: nanmatou.club
+  #Jinspector server will use this port
+  port: 2333
+  #unique string that identify your clients
+  token: zxjawdjawdjgawgnnxuw
+
+requiredHostIds:
+  #sometimes a client can't send out inspection results because it has shut down due to
+  #unexpected reasons, so a list of required host ids are necessary, they can help you know
+  #whether the hosts' clients are working
+  #Here are the list of host ids below, host id is configured at id.yml
+  - serverhostid
+  - clienthostid
+

@@ -1,0 +1,30 @@
+# all name and description attributes are not required
+servers:
+  - server:
+      # the id is related to the id in id.yml
+      id: serverhostid
+      name: master
+      services:
+        # full attributes edition
+        - service:
+            name: Tomcat
+            inspectCommand: jps
+            expectedResult: Bootstrap
+            description: Is tomcat running?
+        # simplest attributes edition
+        - service:
+            inspectCommand: sudo docker ps
+            expectedResult: mysql
+        - service:
+            inspectCommand: ps -e
+            expectedResult: unknow process
+  - server:
+      id: clienthostid
+      name: client1
+      services:
+        - service:
+            inspectCommand: tasklist
+            expectedResult: chrome
+        - service:
+            inspectCommand: netstat -ano
+            expectedResult: 49664

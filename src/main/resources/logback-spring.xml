@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration  scan="true" scanPeriod="60 seconds" debug="false">
+
+    <property name="CONSOLE_LOG_PATTERN"
+              value="%date{yyyy-MM-dd HH:mm:ss.SSS} | %highlight(%-5level) | %boldYellow(%thread) | %boldGreen( %logger{36}) | %msg%n"/>
+    <property name="FILE_LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n"/>
+    <contextName>logback</contextName>
+    <!--输出到控制台-->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="UTF-8">
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+    <!--按天生成日志-->
+    <appender name="sysErrorLogFile"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>  <!-- 如果命中就禁止这条日志 -->
+            <onMismatch>DENY</onMismatch>  <!-- 如果没有命中就使用这条规则 -->
+        </filter>
+        <encoder charset="UTF-8">
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+        </encoder>
+        <Prudent>true</Prudent>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>logs/%d{yyyy-MM-dd}/error.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+    </appender>
+    <!--按天生成日志-->
+    <appender name="sysLogFile"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder charset="UTF-8">
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+        </encoder>
+        <Prudent>true</Prudent>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>logs/%d{yyyy-MM-dd}/info.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+
+    <!-- project default level -->
+    <logger name="org.springframework" level="INFO"/>
+    <logger name="priv.javthon.jinspector" additivity="false" level="INFO">
+        <appender-ref ref="sysLogFile"/>
+        <appender-ref ref="sysErrorLogFile"/>
+        <appender-ref ref="console"/>
+    </logger>
+
+    <root level="DEBUG">
+        <appender-ref ref="console"/>
+    </root>
+    <root level="INFO">
+        <appender-ref ref="console"/>
+        <appender-ref ref="sysLogFile"/>
+    </root>
+    <root level="ERROR">
+        <appender-ref ref="console"/>
+        <appender-ref ref="sysErrorLogFile"/>
+    </root>
+</configuration>

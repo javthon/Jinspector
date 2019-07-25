@@ -1,0 +1,20 @@
+mail:
+  sender:
+    host: smtp.qq.com
+    port: 465
+    address: jinspector@foxmail.com
+    password: yjrvxfydupwkdfch
+    nickname: Jinspector
+  receivers:
+    - 1553197252@qq.com
+  title: Jinspector
+
+
+schedule:
+  report:
+    initialTime: "15:50"
+    interval: 1*60*30
+  inspect:
+    initialTime: "15:25"
+    interval: 120
+
