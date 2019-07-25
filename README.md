@@ -41,11 +41,10 @@ Jinspector is an easy-to-use monitoring tool for Linux and Windows operating sys
 
 
 ## Get Started
-Step 1: create a new folder called jinspector  
-Step 2: download the latest release to the jinspector folder  
-Step 3: extract the release file to the jinspector folder  
-Step 4: then you will see a `config` folder, configure the files inside according to the [configuration](#configuration) rules below  
-Step 5: go to the jinspector folder and run the monitoring progarm, for Linux use `nohup java -jar jinspector.jar &`, for windows use `java -jar jinspector.jar`  
+Step 1: download the latest release   
+Step 2: unzip the release file 
+Step 3: find the `config` folder, configure the files inside according to the [configuration](#configuration) rules below  
+Step 4: go to the jinspector folder and run the monitoring progarm, for Linux use `nohup java -jar jinspector.jar &`, for windows use `java -jar jinspector.jar`  
 
 
 ## Get started with docker
